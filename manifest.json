@@ -13,15 +13,26 @@
     "48": "icon_48.png",
     "128": "icon_128.png"
   },
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
   "content_scripts": [
     {
-      "matches": ["*://*.emag.ro/*"],
-      "js": ["content.js"]
+      "matches": [
+        "*://*.emag.ro/*"
+      ],
+      "js": [
+        "content.js"
+      ]
     },
     {
-      "matches": ["*://*.emag.ro/*"],
-      "js": ["em-access.js"],
+      "matches": [
+        "*://*.emag.ro/*"
+      ],
+      "js": [
+        "em-access.js"
+      ],
       "world": "MAIN"
     }
   ]

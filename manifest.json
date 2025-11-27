@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "eMAG Cleaner",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Filtrează produsele promovate și cele vândute de terți pentru o experiență de cumpărături mai curată pe eMAG.",
   "action": {
     "default_popup": "popup.html",

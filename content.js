@@ -70,9 +70,23 @@ window.addEventListener('message', (event) => {
     if (event.source !== window) {
         return;
     }
+
+    // Handle EM global data
     if (event.data.type === 'EM_DATA') {
         emItems = event.data.data;
         emMap = new Map(emItems.map(item => [item.id, item]));
         applyFilters();
+    }
+
+    // Handle intercepted API data
+    if (event.data.type === 'EMAG_API_DATA') {
+        const apiData = event.data.data;
+
+        // Extract items from the API response
+        if (apiData && apiData.data && apiData.data.items) {
+            emItems = apiData.data.items;
+            emMap = new Map(emItems.map(item => [item.id, item]));
+            applyFilters();
+        }
     }
 });

@@ -30,6 +30,16 @@
         "*://*.emag.ro/*"
       ],
       "js": [
+        "api-interceptor.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.emag.ro/*"
+      ],
+      "js": [
         "em-access.js"
       ],
       "world": "MAIN"

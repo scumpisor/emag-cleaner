@@ -14,7 +14,17 @@ function applyFilters() {
 
         products.forEach((product, index) => {
             let hide = false;
-            const productId = product.getAttribute('data-product-id');
+            let productId = product.getAttribute('data-product-id');
+            if (!productId) {
+                product.querySelector('button.add-to-favorites').getAttribute('data-product').replace(/&quot;/g, '"');
+                try {
+                    const dataProduct = product.querySelector('button.add-to-favorites').getAttribute('data-product').replace(/&quot;/g, '"');
+                    const dataObj = JSON.parse(dataProduct);
+                    productId = dataObj.productid;
+                } catch (e) {
+                    return; // Skip this product if we can't get the ID
+                }
+            }
 
             // Retrieve vendor info from EM data
             let vendor = emMap?.get(parseInt(productId))?.offer?.vendor?.name?.default;
@@ -75,6 +85,7 @@ window.addEventListener('message', (event) => {
     if (event.data.type === 'EM_DATA') {
         emItems = event.data.data;
         emMap = new Map(emItems.map(item => [item.id, item]));
+        console.log('Received EM data in content script:', emItems);
         applyFilters();
     }
 
